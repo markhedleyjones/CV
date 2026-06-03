@@ -1,0 +1,118 @@
+% V2 single-column - parser/ATS-safe twin of the sidebar design.
+% Single column, no multi-column boxes, no tables, no photo, real selectable text.
+% Build: xelatex v2-singlecol.tex
+\documentclass[10pt]{article}
+
+\usepackage[a4paper, top=1.7cm, bottom=1.6cm, left=2.1cm, right=2.1cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{1.06}
+\setlength{\emergencystretch}{3em}
+\RaggedRight
+
+% ---- Fonts ----
+\defaultfontfeatures{Path = /usr/share/fonts/rsms-inter-fonts/, Extension = .ttf, Ligatures = TeX}
+\setmainfont{Inter}[UprightFont = Inter-Regular, BoldFont = Inter-SemiBold, ItalicFont = Inter-Italic]
+\newfontfamily\interlight{Inter}[UprightFont = Inter-Light]
+\newfontfamily\intermed{Inter}[UprightFont = Inter-Medium]
+\newfontfamily\intersemi{Inter}[UprightFont = Inter-SemiBold]
+\newfontfamily\displight{InterDisplay}[UprightFont = InterDisplay-Light]
+\newfontfamily\dispthin{InterDisplay}[UprightFont = InterDisplay-Thin]
+
+% ---- Palette (matches the sidebar version) ----
+\definecolor{ink}{HTML}{20222A}
+\definecolor{muted}{HTML}{767A85}
+\definecolor{accent}{HTML}{1F5C63}
+\definecolor{hair}{HTML}{D6D7DB}
+\color{ink}
+
+\setlist[itemize]{leftmargin=1.15em, itemsep=0.25ex, topsep=0.5ex, parsep=0pt,
+  label=\textcolor{accent}{\fontsize{5}{5}\selectfont\textbullet}}
+
+\newcommand{\cvsection}[1]{\vspace{2.6ex}{\intersemi\footnotesize\addfontfeature{LetterSpace=14.0}\textcolor{accent}{\MakeUppercase{#1}}}\hspace{0.85em}\raisebox{0.28ex}{\textcolor{hair}{\leaders\hrule height 0.5pt\hfill\kern0pt}}\par\vspace{1.3ex}}
+\newcommand{\role}[3]{{\intersemi #1}\hfill{\small\textcolor{muted}{#3}}\par\vspace{0.12ex}{\small\textcolor{accent}{#2}}\par\vspace{0.7ex}}
+\newcommand{\skillline}[2]{{\intersemi #1:}\ #2\par\vspace{0.55ex}}
+\newcommand{\dotsep}{\thinspace\textcolor{hair}{\textbullet} }
+
+\begin{document}
+
+% ---- Header (single column, full width, no photo) ----
+{\dispthin\fontsize{30}{34}\selectfont\addfontfeature{LetterSpace=2.0} Mark Hedley Jones}\par
+\vspace{1.1ex}
+{\intermed\large\textcolor{accent}{Robotics Perception Engineer}}\quad{\interlight\textcolor{muted}{SLAM \textbullet\ 3D mapping \textbullet\ sensor fusion}}\par
+\vspace{1.3ex}
+{\small\textcolor{muted}{Osaka, Japan \dotsep markhedleyjones@gmail.com \dotsep markhedleyjones.com \dotsep github.com/markhedleyjones \dotsep orcid.org/0000-0003-3387-2932}}
+
+\cvsection{Profile}
+{\interlight Over a decade building and shipping autonomous robots, from research platforms to deployed commercial fleets. PhD-qualified, spanning perception software, mechanical design and embedded hardware, with an AI-native workflow.}
+
+\cvsection{Experience}
+\role{Software Engineer {\interlight\textcolor{muted}{— mapping, simulation \& object detection}}}{SEQSENSE, Tokyo}{Nov 2018 — Present}
+Perception and mapping software for SEQSENSE's autonomous robots: SQ-2, a security robot deployed as a fleet across airports, offices and public buildings in Japan, and FORRO, a delivery robot co-developed with Kawasaki Heavy Industries.
+\begin{itemize}
+  \item On-line lidar-based 3D mapping (point clouds / PCD) running across desktop, cloud and on-robot in real time.
+  \item 3D object detection and tracking from lidar and camera; detection models trained in PyTorch and OpenVINO.
+  \item Gazebo simulation environment that closely mirrors robot behaviour; robot models (URDF) generated from CAD.
+\end{itemize}
+
+\vspace{0.9ex}
+\role{Post-Doctoral Researcher {\interlight\textcolor{muted}{— autonomous navigation}}}{Robotics Plus Ltd. / University of Auckland}{Dec 2017 — Oct 2018}
+Navigation software for heavy-duty vehicles operating in outdoor orchard environments.
+\begin{itemize}
+  \item Integrated and tuned real-time SLAM, point-cloud processing and path-planning; selected and fused lidar, cameras, radar, IMU and GNSS.
+  \item Personally accountable for the safety of people and infrastructure around the autonomous vehicle.
+\end{itemize}
+
+\vspace{0.9ex}
+\role{Post-Doctoral Researcher {\interlight\textcolor{muted}{— robotic hardware development}}}{Robotics Plus Ltd. / University of Waikato}{Mar 2015 — Dec 2017}
+Designed and built a heavy-duty outdoor vehicle, a fruit-harvesting robot and a pollination robot; led a team of post-graduate researchers.
+\begin{itemize}
+  \item Built ROS systems for robotic arms, precision spraying and an electric vehicle; full hardware design, integration and testing.
+  \item Managed a 6–10 person research team across two universities, with budget and procurement authority.
+\end{itemize}
+
+\cvsection{Education}
+\role{Doctor of Philosophy {\interlight\textcolor{muted}{— The Electrical Properties of Interfacial Double Layers}}}{University of Waikato}{2011 — 2015}
+\vspace{-0.2ex}
+\role{Master of Engineering {\interlight\textcolor{muted}{— first class honours, millimetre-wave power measurement}}}{University of Waikato}{2009}
+\vspace{-0.2ex}
+\role{Bachelor of Science {\interlight\textcolor{muted}{— electronics \& mechatronics}}}{University of Waikato}{2005 — 2008}
+
+\cvsection{Skills}
+\skillline{Robotics \& Perception}{ROS, SLAM, 3D mapping, point clouds (PCL), object detection \& tracking, Gazebo, URDF}
+\skillline{Vision \& Machine Learning}{OpenCV, PyTorch, OpenVINO, camera/lidar calibration \& sensor fusion}
+\skillline{Software}{C/C++ (7~years), Python (7~years), Linux (10+~years), Docker, Git}
+\skillline{Design \& Fabrication}{SolidWorks (6~years), CAD/CAM, CNC, PCB \& embedded, fail-safe architecture}
+
+\cvsection{Selected Publications}
+\begin{itemize}
+  \item Jones, M. H., et al. \textit{Design and Testing of a Heavy-Duty Platform for Autonomous Navigation in Kiwifruit Orchards.} Biosystems Engineering, 2019.
+  \item Jones, M. H., Scott, J. \textit{Scaling of Electrode–Electrolyte Interface Model Parameters in Phosphate Buffered Saline.} IEEE Transactions on Biomedical Circuits and Systems, 2014.
+  \item Williams, H., et al. (incl. M. H. Jones). \textit{Improvements to and large-scale evaluation of a robotic kiwifruit harvester.} Journal of Field Robotics, 2019.
+\end{itemize}
+{\small\textcolor{muted}{Full list: \href{https://markhedleyjones.com/about}{markhedleyjones.com/about}}}
+
+\cvsection{Open Source}
+\skillline{dmenu-extended}{fast file/program launcher for Linux tiling window managers; plugin system.}
+\skillline{Container-Magic}{templated, reproducible containerised development environments.}
+\skillline{Calibration boards}{100+ camera-calibration targets with an interactive generator; widely used in robotics.}
+\skillline{Blender PCD I/O}{point-cloud import/export add-on for Blender.}
+
+\cvsection{Awards}
+\skillline{Waikato Doctoral Scholarship}{\$56,000 USD, 2010}
+\skillline{Agilent Technologies Research Scholarship}{\$36,000 USD, 2009}
+\skillline{ENZcon}{Best Research Paper (2011); Runner-up Best Presentation (2014)}
+
+\cvsection{Languages \& Status}
+\skillline{Nationalities}{New Zealand \& British}
+\skillline{Languages}{English (native), Japanese (conversational, JLPT N3)}
+\skillline{Status}{Japanese permanent residency}
+
+\end{document}

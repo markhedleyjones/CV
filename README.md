@@ -4,21 +4,18 @@ Please find my current [curriculum vitae](https://github.com/MarkHedleyJones/CV/
 It is writen in [LaTeX](https://www.latex-project.org/). Feel free to adapt my source files for yourself.
 
 ## Compiling
-On Linux, install the dependencies (listed below) and then download or clone this repository.
-Run the following command from within your local copy of this repository
+The LaTeX source is in [`.source/`](.source). Build the CV with **XeLaTeX** (it sets the document in the [Inter](https://rsms.me/inter/) typeface via `fontspec`):
 
-    pdflatex MarkHedleyJones-CV.tex
+    cd .source
+    xelatex sidebar.tex     # run twice so the sidebar layout settles
+
+`sidebar.tex` is the one-page CV; `singlecol-ats.tex` is a plain single-column variant for applicant-tracking systems.
 
 ## Dependencies
-Assuming you're on a Ubuntu based system, please ensure you have the following packages installed:
+* XeLaTeX
+* The **Inter** font
+* TeX packages: `fontspec`, `fontawesome5`, `tikz`, `enumitem`, `ragged2e`, `eso-pic`, `textpos`, `microtype`, `tcolorbox`
 
-* latexmk
-* texlive-fonts-extra
-* texlive-fonts-recommended
-* texlive-latex-base
-* texlive-latex-extra
-* texlive-latex-recommended
+On Fedora:
 
-You can install them all by running the following command in a terminal:
-
-    sudo apt-get install latexmk texlive-fonts-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended
+    sudo dnf install texlive-xetex texlive-fontawesome5 texlive-microtype texlive-tcolorbox texlive-textpos rsms-inter-fonts
